@@ -4,8 +4,7 @@ const searchInput = document.getElementById("search-input")
 const results = document.getElementById("content-pane")
 const apiKey = "9398c13c"
 
-const savedMovies = JSON.parse(localStorage.getItem("myMovies"))
-const myMovies = []
+const myMovies = JSON.parse(localStorage.getItem("myMovies")) || []
 
 
 /* Button Click: Get Search Results */
@@ -40,7 +39,6 @@ function lookupMovie(movieID){
     fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${movieID}`)
         .then(response => response.json())
         .then(movieData => {
-            console.log(movieData)
             renderMovies(movieData)
         })
 }
@@ -65,8 +63,8 @@ function renderMovies(movieData) {
                 <div class="movie-text-row-two">
                     <p class="movie-runtime">${movieData.Runtime}</p>
                     <p class="movie-genre">${movieData.Genre}</p>
-                    <button class="add-btn" data-addToWatchlist=${movieData.imdbID}>
-                        <span>+</span> Watchlist
+                    <button class="add-btn" data-add=${movieData.imdbID}>
+                        <span data-add=${movieData.imdbID}>+</span> Watchlist
                     </button>
                 </div>
                 <div class="movie-text-row-three">
@@ -79,18 +77,14 @@ function renderMovies(movieData) {
 
 
 /* Function: Add Movie to Watchlist */
-
-document.addEventListener("click", function(e){
-    if (savedMovies) {
-        myMovies = savedMovies
-    }
-    
-    if (e.target.dataset.addToWatchlist) {
-        if (myMovies.includes(e.target.dataset.addToWatchlist)) {
+document.addEventListener('click', function(e){
+    if(e.target.dataset.add) {
+        if(myMovies.includes(e.target.dataset.add)) {
             return
         } else {
-            myMovies.push (e.target.dataset.addToWatchlist)
+            myMovies.push(e.target.dataset.add)
         }
         localStorage.setItem("myMovies", JSON.stringify(myMovies))
     }
 })
+

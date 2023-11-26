@@ -171,7 +171,8 @@ a {
 /* Add/Remove to Watchlist */
 
 .add-btn,
-.watchlist-link {
+.watchlist-link,
+.remove-btn {
     background: #121212;
     color: #FFFFFF;
     border: none;
@@ -179,7 +180,8 @@ a {
 }
 
 .add-btn span,
-.watchlist-link span {
+.watchlist-link span,
+.remove-btn span {
     background: #FFFFFF;
     color: #121212;
     border-radius: 50%;

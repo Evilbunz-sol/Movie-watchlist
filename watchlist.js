@@ -2,17 +2,16 @@
 const results = document.getElementById("content-pane")
 const apiKey = "9398c13c"
 
-const savedMovies = JSON.parse(localStorage.getItem("myMovies"))
-const myMovies = []
+const myMovies = JSON.parse(localStorage.getItem("myMovies")) || []
 
 // Watch List Render
 
 function renderWatchlist () {
-    if (savedMovies.length) {
-        for (let i = 0; i < savedMovies.length; i++) {
-            fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${savedMovies[i]}`)
+    if (myMovies.length) {
+        for (let i = 0; i < myMovies.length; i++) {
+            fetch(`https://www.omdbapi.com/?apikey=${apiKey}&i=${myMovies[i]}`)
             .then(response => response.json())
-            .then(data => {
+            .then(movieData => {
                 results.innerHTML += `
                     <div class="movie-container">
                         <div class="movie-poster">
@@ -23,23 +22,20 @@ function renderWatchlist () {
                         </div>
                         
                         <div class="movie-text">
-                        
                             <div class="movie-text-row-one">
                                 <h2 class="movie-title">${movieData.Title}</h2>
                                 <img src="images/star-icon.png" class="star-icon"/>
                                 <p class="movie-rating">${movieData.imdbRating}</p>
-                            </div>
-                            
+                            </div>     
                             <div class="movie-text-row-two">
                                 <p class="movie-runtime">${movieData.Runtime}</p>
                                 <p class="movie-genre">${movieData.Genre}</p>
                                 <button 
                                     class="remove-btn" 
-                                    data-removeFromWatchlist=${movieData.imdbID}>
+                                    data-remove=${movieData.imdbID}>
                                     <span>-</span> Remove
                                 </button>
-                            </div>
-                            
+                            </div>                 
                             <div class="movie-text-row-three">
                                 <p class="movie-plot">${movieData.Plot}</p>
                             </div>
@@ -49,9 +45,24 @@ function renderWatchlist () {
                 `
             })
         }
-    } else {}
+    } else {
+        results.innerHTML = `
+        <section class="flex watchlist-default">
+            <h2>Your watchlist is looking a little empty...</h2>
+            <a class="watchlist-link" href="index.html"> 
+            <span>+</span> Let’s add some movies! </a>
+        </section>`
+    }
 }
 
 renderWatchlist()
 
 // REMOVE FROM WATCHLIST 
+document.addEventListener('click', function(e){ 
+    if(e.target.dataset.remove) {
+        myMovies.splice(myMovies.indexOf(e.target.dataset.remove), 1)
+        localStorage.setItem("myMovies", JSON.stringify(myMovies))
+        results.innerHTML = ""
+        renderWatchlist()
+    }
+})
