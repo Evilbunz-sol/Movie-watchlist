@@ -1,0 +1,224 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    position: relative;
+}
+
+h1 {
+    font-size: 3rem;
+    color: #FFFFFF;
+}
+
+h2 {
+    color: #2E2E2F;
+}
+
+a {
+    color: #FFFFFF;
+    font-size: 1.25rem; 
+    text-decoration: none;
+}
+
+.flex {
+    display: flex;
+}
+
+
+
+
+/* Hero Banner */
+
+.header {
+    align-items: center;
+    justify-content: space-between;
+    padding: 0em 3.5em;
+    background: url("/images/main.png");
+    background-size: cover;
+    height: 35vh;
+    margin-bottom: 3em;
+}
+
+
+
+/* Search */
+
+.search-container {
+    justify-content: center;
+    position: absolute;
+    top: calc(35vh - 25px); /* 35vh is the height of your header, 50px is half the height of your search box */
+    left: 50%;
+    transform: translateX(-50%); /* this centers the search box horizontally */
+}
+
+.search-box {
+    font-size: 0.875rem;
+    color: #A5A5A5;
+    background: #2E2E2F;
+    border: 1px solid #2E2E2F;
+    border-radius: 6px 0 0 6px;
+    width: 40vw;
+    padding: 1em 1em;
+}
+
+.search-btn {
+    font-size: 0.875rem;
+    color: #ffffff;
+    border: 1px solid #4B4B4B;
+    border-radius: 0 6px 6px 0;
+    background: #4B4B4B;
+    min-width: 10em;
+}
+
+
+
+
+/* Main Content - Default  */
+
+
+.results,
+.watchlist-default {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.watchlist-default {
+    height: 40vh;
+}
+
+.results {
+    height: 60vh; 
+}
+
+.placeholder-icon {
+    width: 10%;
+}
+
+
+
+
+/* Main Content - No Results */
+
+.no-movie-found {
+    padding: 12em 0;
+    text-align: center;
+}
+
+
+
+
+/* Main Content - Results */
+
+.movie-container {
+    width: 80%;
+    margin: auto;
+    padding: 1.5em 0;
+    border-bottom: 1px solid #2C2C2C;
+}
+
+.movie-container,
+.movie-text-row-one,
+.movie-text-row-two {
+    display: flex;
+    align-items: center;
+}
+
+.movie-poster img,
+.poster-unavailable {
+    width: 10em;
+    border-radius: 2%;
+    margin: 0 2.5em 0 2em;
+}
+
+.poster-unavailable {
+    text-align: center;
+    padding: 0 2.5em;
+}
+
+.movie-title {
+    font-size: 1.2rem;
+    margin-right: 0.8em;
+    color: #FFFFFF;
+    font-weight: 500;
+
+}
+
+.poster-unavailable,
+.movie-runtime,
+.movie-genre,
+.movie-rating {
+    color: #FFFFFF;
+    font-size: 0.75rem;
+}
+
+.movie-rating {
+    margin-left: 0.5em;
+}
+
+.movie-runtime,
+.movie-genre {
+    margin-right: 1.5em;
+}
+
+.movie-plot {
+    color: #A5A5A5;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Add/Remove to Watchlist */
+
+.add-btn,
+.watchlist-link {
+    background: #121212;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+}
+
+.add-btn span,
+.watchlist-link span {
+    background: #FFFFFF;
+    color: #121212;
+    border-radius: 50%;
+    padding: 0.1em 0.4em;
+    font-weight: 800;
+    margin-right: 0.3em
+}
+
+.add-btn,
+.remove-btn {
+    font-size: 0.75rem;
+}
+
+.watchlist-link {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+
+
+
+
+
+/*
+.add-btn,
+.remove-btn {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-btn span,
+.remove-btn span,
+.empty-watchlist-link span {
+    color: white;
+    background-color: black;
+    padding: 0 4px;
+    border-radius: 50%;
+    font-size: 16px;
+}
+
+*/
